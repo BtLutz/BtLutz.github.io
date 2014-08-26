@@ -186,7 +186,6 @@ body {
 #about {
   padding-top: 10vh;
   height: 100vh;
-  width: 845px;
   float: left;
 }
 
@@ -430,6 +429,11 @@ h3 {
 }
 
 /* responsive */
+@media only screen and (min-width : 1264px) {
+  #about {
+    width: 845px;
+    }
+}
 @media only screen and (max-width : 800px) {
     html {
         overflow-x: hidden;
