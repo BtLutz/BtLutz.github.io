@@ -187,7 +187,7 @@ body {
   padding-top: 10vh;
   height: 100vh;
   width: 845px;
-  float: left;
+  float: right;
 }
 
 #contact {
@@ -298,7 +298,7 @@ header nav ul li a:hover {
 #mainpage .bit a {
     border-bottom: 1px dotted: #000;
     color: #D5A24F;
-    
+
 }
 
 .contact-page .bit a {
