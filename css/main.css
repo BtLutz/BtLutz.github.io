@@ -180,18 +180,19 @@ body {
     background-size: cover;
 }
 #home {
-  height: 100vh;
+  /*height: 100vh;*/
 }
 
 #about {
   padding-top: 10vh;
-  height: 100vh;
+  /*height: 100vh;*/
   float: left;
+  padding-bottom: -150px;
 }
 
 #contact {
   float: right;
-  height: 60vh;
+  /*height: 60vh;*/
   padding-top: 26vh;
 }
 
