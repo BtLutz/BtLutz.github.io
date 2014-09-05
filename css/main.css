@@ -155,6 +155,8 @@ u {
     padding-top: 5.5vh;
     padding-bottom: 0px;
     text-decoration: none;
+    margin-left: 30px;
+    float: left;
   }
 
 b, strong {
@@ -199,7 +201,7 @@ body {
 
 #Container {
     /*width: 100%;*/
-    height: 83.5%;
+    /*height: 83.5%;*/
 }
 
 .aboutContainer {
@@ -270,6 +272,10 @@ header nav ul li a:hover {
       transition:background 0.75s;
 }
 
+.english{
+  display: none;
+}
+
 .bit-hidden {
   visibility: hidden;
 
@@ -302,7 +308,7 @@ header nav ul li a:hover {
 
 #mainpage .divisi {
     width: 100%;
-    height: 60px;
+    /*height: 60px;*/
 }
 
 #mainpage .bit a {
@@ -471,11 +477,15 @@ h3 {
     .bit, .pExcerpt {
         font-size: 26px !important;
         display: block;
-        padding-left: 10px !important;
+        padding-left: 30px !important;
     }
 
+    .container {
+      height: 5vh;
+    }
+    }
     .contact-page {
-        overflow-x: hidden;
+        /*overflow-x: hidden;*/
     }
 
     #mainpage .divisi {
@@ -483,7 +493,7 @@ h3 {
     }
 
     header h1, header h1 a {
-        width: 100%;
+        /*width: 100%;*/
         text-align: center;
         display: block;
         margin-left: 0px;
@@ -494,10 +504,11 @@ h3 {
         float: inherit;
         line-height: 36px;
         text-align: center;
+        margin-top: 5vh;
     }
 
     .index-page, .contact-page, .blog-page {
-        padding-top: 0px;
+        /*padding-top: 0px;*/
     }
 
     .indexLink {

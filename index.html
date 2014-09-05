@@ -11,9 +11,9 @@
         <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
         <link href="/css/jekyll-github.css" media="all" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="/font-awesome-4.1.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/css/normalize.css">
-        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/Users/BtLutz/Documents/btlutz/font-awesome-4.1.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/Users/BtLutz/Documents/btlutz/css/normalize.css">
+        <link rel="stylesheet" href="/Users/BtLutz/Documents/btlutz/css/main.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <style>
@@ -45,6 +45,22 @@
         <meta name="Description" CONTENT="Brian Lutz develops machine learning software for a variety of applications.">
     </head>
     <body>
+      <script type="text/javascript" language="javascript">
+
+        $(document).ready(function() {
+
+          $('.bit').hover(
+              function () {
+                  $(this).find(".english").toggle("slow", function() {});
+              },
+              function () {
+                  $(this).find(".english").toggle("slow", function() {});
+              }
+          );
+
+        });
+      </script>
+
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -64,14 +80,27 @@
             <div id="home">
               <div id="container">
                 <div id="mainpage" class="index-page">
-                  	<span class="bit">Humanum.</span><!--<span class="bit bit-hidden">Hello World!</span>-->
-                  	<div class="divisi">&nbsp;</div>
-                  	<span class="bit">Discipulus<!-- <a href="http://getrea.ch">Reach</a>-->.</span>
-                  	<div class="divisi">&nbsp;</div>
-                  	<span class="bit">Conditor.</span>
-                  	<div class="divisi">&nbsp;</div>
-                  	<!--<span class="bit">Available for freelance work.</span>-->
-                  	<div class="divisi">&nbsp;</div>
+                  	<div id="container">
+                      <div class="bit" style="display:inline-block">
+                       <div class="latin">Humanum.</div>
+                       <div class="english">Human.</div>
+                     </div>
+                   </div>
+                     <div class="divisi">&nbsp;</div>
+                    <div id="container">
+                     <div class="bit" style="display:inline-block">
+                       <div class="latin">Disciplus.</div>
+                       <div class="english">Student.</div>
+                     </div>
+                   </div>
+                     <div class="divisi">&nbsp;</div>
+                   <div id="container" style="padding-bottom:7vh;">
+                     <div class="bit" style="display:inline-block">
+                       <div class="latin">Aedifax.</div>
+                       <div class="english">Architect.</div>
+                     </div>
+                   </div>
+                    <div class="divisi">&nbsp;</div>
                   	<span class="bit"><i class="fa fa-twitter"></i>&nbsp;<a href="https://twitter.com/@BtLutz">@BtLutz</a></span>
                     <center><i id="down" class="fa fa-arrow-down fa-5x"></i></center>
                   	<div class="divisi">&nbsp;</div>
@@ -79,44 +108,44 @@
                   	<!--<span class="bit"><i class="fa fa-inbox"></i>&nbsp;<a href="mailto:brian.lutz@hushmail.com">brian.lutz@hushmail.com</a></span>
                   </div>-->
 
-                </div>
               </div>
             </div>
-            <div id="about">
-              <header><h1><a>About</a></h1></header>
-              /<div id="aboutContainer">
-                  <div id="mainpage" class="about-page">
-                    <p class="bit">Brian Lutz develops analytic software for a variety of applications. His interests include automotive racing, jazz music, and fashionably chill weather.</p>
-                    <p class="bit">If you feel like reaching out to Brian, please feel free to <a href="mailto:j@jamiehoyle.com">email</a> him, or tweet <a href="http://twitter.com/BtLutz">@BtLutz</a>
-                    <p class="bit">Site design & inspiration comes from <a href="http://www.twitter.com/mightyshakerjnr">@mightyshakerjnr</a> & <a href="http://www.twitter.com/hmason">@hmason</a>
+            <!-- <div id="container"> -->
+              <div id="about">
+                <header><h1><a><div style="padding-left:30px;">About</a></h1></header>
+                <div id="aboutContainer">
+                    <div id="mainpage" class="about-page">
+                      <p class="bit">Brian Lutz develops analytic software for a variety of applications. His interests include automotive racing, jazz music, and fashionably chill weather.</p>
+                      <p class="bit">If you would like to contact Brian, please feel free to <a href="mailto:brian.lutz@hushmail.com">email</a> him, or tweet <a href="http://twitter.com/BtLutz">@BtLutz</a>
+                      <p class="bit">Site design & inspiration comes from <a href="http://www.twitter.com/mightyshakerjnr">@mightyshakerjnr</a> & <a href="http://www.twitter.com/hmason">@hmason</a>
 
+                    <!--<header><h1><a href="/">Contact</a></h1></header>-->
+                    <div id="mainpage" class="contact-page">
+                      <!--<span class="bit con c-one"><i class="fa fa-twitter"></i>&nbsp;<a href="https://twitter.com/@BtLutz">@BtLutz</a></span>
+                      <div class="divisi">&nbsp;</div>
+                      <span class="bit c-four"><i class="fa fa-linkedin"></i>&nbsp;<a href="https://www.linkedin.com/pub/brian-lutz/81/912/9b">Brian Lutz</a></span>
+                      <div class="divisi">&nbsp;</div>
+                      <span class="bit con c-two"><i class="fa fa-inbox"></i>&nbsp;<a href="mailto:brian.lutz@hushmail.com">eMail</a></span>
+                      <div class="divisi">&nbsp;</div>
+                      <span class="bit con c-five"><i class="fa fa-github"></i>&nbsp;<a href="http://github.com/BtLutz">@BtLutz</a></span>-->
+                    </div>
+                    </div>
+                </div>
+              </div>
+              <div id="contact">
                   <!--<header><h1><a href="/">Contact</a></h1></header>-->
                   <div id="mainpage" class="contact-page">
-                    <!--<span class="bit con c-one"><i class="fa fa-twitter"></i>&nbsp;<a href="https://twitter.com/@BtLutz">@BtLutz</a></span>
-                    <div class="divisi">&nbsp;</div>
+                    <span class="bit con c-one"><i class="fa fa-twitter"></i>&nbsp;<a href="https://twitter.com/@BtLutz">@BtLutz</a></span>
+                    <div class="divisi" style="height:60px;">&nbsp;</div>
                     <span class="bit c-four"><i class="fa fa-linkedin"></i>&nbsp;<a href="https://www.linkedin.com/pub/brian-lutz/81/912/9b">Brian Lutz</a></span>
-                    <div class="divisi">&nbsp;</div>
+                    <div class="divisi" style="height:60px;">&nbsp;</div>
                     <span class="bit con c-two"><i class="fa fa-inbox"></i>&nbsp;<a href="mailto:brian.lutz@hushmail.com">eMail</a></span>
-                    <div class="divisi">&nbsp;</div>
-                    <span class="bit con c-five"><i class="fa fa-github"></i>&nbsp;<a href="http://github.com/BtLutz">@BtLutz</a></span>-->
-                  </div>
+                    <div class="divisi" style="height:60px;">&nbsp;</div>
+                    <span class="bit con c-five"><i class="fa fa-github"></i>&nbsp;<a href="http://github.com/BtLutz">@BtLutz</a></span>
+                    </div>
                   </div>
               </div>
-            </div>
-            <div id="contact">
-              <div id="container">
-                <!--<header><h1><a href="/">Contact</a></h1></header>-->
-                <div id="mainpage" class="contact-page">
-                  <span class="bit con c-one"><i class="fa fa-twitter"></i>&nbsp;<a href="https://twitter.com/@BtLutz">@BtLutz</a></span>
-                  <div class="divisi">&nbsp;</div>
-                  <span class="bit c-four"><i class="fa fa-linkedin"></i>&nbsp;<a href="https://www.linkedin.com/pub/brian-lutz/81/912/9b">Brian Lutz</a></span>
-                  <div class="divisi">&nbsp;</div>
-                  <span class="bit con c-two"><i class="fa fa-inbox"></i>&nbsp;<a href="mailto:brian.lutz@hushmail.com">eMail</a></span>
-                  <div class="divisi">&nbsp;</div>
-                  <span class="bit con c-five"><i class="fa fa-github"></i>&nbsp;<a href="http://github.com/BtLutz">@BtLutz</a></span>
-                  </div>
-                </div>
-              </div>
+            <!-- </div> -->
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
       <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
       <script src="/js/plugins.js"></script>
