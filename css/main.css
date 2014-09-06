@@ -167,6 +167,12 @@ b, strong {
     font-weight: 600;
 }
 
+line {
+  stroke: #000;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+}
+
 html, body {
     width: 100%;
     height: 100%;
@@ -474,15 +480,20 @@ h3 {
 /* lol, iPhone */
 @media only screen and (max-width: 480px) {
 
-    .bit, .pExcerpt {
-        font-size: 26px !important;
-        display: block;
-        padding-left: 30px !important;
-    }
+      .bit, .pExcerpt {
+          font-size: 26px !important;
+          display: block;
+          padding-left: 30px !important;
+      }
 
-    .container {
-      height: 5vh;
-    }
+      u {
+        margin-left:0px;
+      }
+
+
+      .container {
+        height: 5vh;
+      }
     }
     .contact-page {
         /*overflow-x: hidden;*/
