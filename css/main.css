@@ -480,6 +480,53 @@ h3 {
 
 }
 
+@media only screen and (min-width:1147) and (max-width : 1247px) {
+  .about-page .bit {
+    width: 700px;
+  }
+
+}
+
+@media only screen and (min-width:1000) and (max-width : 1146px) {
+  .about-page .bit {
+    width: 600px;
+  }
+
+}
+
+@media only screen and (min-width:907px) and (max-width : 1046px) {
+  .about-page .bit {
+    width: 450px;
+  }
+
+}
+
+@media only screen and (min-width:805px) and (max-width : 906px) {
+  .about-page .bit {
+    width: 350px;
+  }
+
+}
+
+@media only screen and (min-width:703px) and (max-width : 804px) {
+  .about-page .bit {
+    width: 300px;
+  }
+
+  #contact {
+    float:left;
+    padding-top: 5vh;
+  }
+
+}
+
+/*@media only screen and (min-width:603px) and (max-width : 702px) {
+  .about-page .bit {
+    width: 200px;
+  }
+
+}*/
+
 /* lol, iPhone */
 @media only screen and (max-width: 480px) {
 
