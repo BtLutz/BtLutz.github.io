@@ -1,0 +1,210 @@
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Brian Lutz</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="font-awesome-4.1.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <style>
+          .indexLink {
+              font-weight: 600;
+
+          }
+
+          .indexLink a .icon-link {
+                color: #aaa;
+          }
+        </style>
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@BtLutz">
+        <meta name="twitter:title" content="Brian Lutz">
+        <meta name="twitter:description" content="Brian Lutz develops machine learning software for a variety of purposes.">
+        <meta name="twitter:creator" content="@BtLutz">
+        <meta name="twitter:image:src" content="">
+        <meta name="twitter:domain" content="">
+        <meta name="twitter:app:name:iphone" content="">
+        <meta name="twitter:app:name:ipad" content="">
+        <meta name="twitter:app:name:googleplay" content="">
+        <meta name="twitter:app:url:iphone" content="">
+        <meta name="twitter:app:url:ipad" content="">
+        <meta name="twitter:app:url:googleplay" content="">
+        <meta name="twitter:app:id:iphone" content="">
+        <meta name="twitter:app:id:ipad" content="">
+        <meta name="twitter:app:id:googleplay" content="">
+        <meta name="Description" CONTENT="Brian Lutz develops machine learning software for a variety of applications.">
+    </head>
+    <body>
+      <script>
+        var width = window.innerWidth,
+            height = 900,
+            delay = 1000,
+            duration = 250;
+
+        var timer = 0;
+        // setTimeout(function () {render=false;}, 3000);
+
+        var sample = poissonDiscSampler(width, height, 10);
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        var totallines = 4000;
+        var s;
+
+        while (s = sample() ) {
+          if (!s[1]) continue;
+          timer++;
+          if (timer>=totallines){
+            break;
+          }
+          svg.append("line")
+              .attr("x1", s[1][0])
+              .attr("y1", s[1][1])
+              .attr("x2", s[1][0])
+              .attr("y2", s[1][1])
+              .style("stroke-opacity", 0)
+            .transition()
+              .delay(s[0].depth * duration + delay)
+              .duration(duration)
+              .ease("linear")
+              .style("stroke-width", (2*(totallines-timer)/totallines))
+              .style("stroke-opacity", (totallines-timer)/totallines)
+              .style("stroke", "#D5A24F")
+              .attr("x2", s[0][0])
+              .attr("y2", s[0][1]);
+        }
+
+        // Based on https://www.jasondavies.com/poisson-disc/
+        function poissonDiscSampler(width, height, radius) {
+          var k = 30, // maximum number of samples before rejection
+              radius2 = radius * radius,
+              R = 3 * radius2,
+              cellSize = radius * Math.SQRT1_2,
+              gridWidth = Math.ceil(width / cellSize),
+              gridHeight = Math.ceil(height / cellSize),
+              grid = new Array(gridWidth * gridHeight),
+              queue = [],
+              queueSize = 0,
+              sampleSize = 0;
+
+          return function() {
+            if (!sampleSize) {
+              var s1 = [Math.random() * width, Math.random() * height];
+              s1.depth = 0;
+              return sample(s1, null);
+            }
+
+            // Pick a random existing sample and remove it from the queue.
+            while (queueSize) {
+              var i = Math.random() * queueSize | 0,
+                  s = queue[i];
+
+              // Make a new candidate between [radius, 2 * radius] from the existing sample.
+              for (var j = 0; j < k; ++j) {
+                var a = 2 * Math.PI * Math.random(),
+                    r = Math.sqrt(Math.random() * R + radius2),
+                    x = s[0] + r * Math.cos(a),
+                    y = s[1] + r * Math.sin(a);
+
+                // Reject candidates that are outside the allowed extent,
+                // or closer than 2 * radius to any existing sample.
+                if (0 <= x && x < width && 0 <= y && y < height && far(x, y)) return sample([x, y], s);
+              }
+
+              queue[i] = queue[--queueSize];
+              queue.length = queueSize;
+            }
+          };
+
+          function far(x, y) {
+            var i = x / cellSize | 0,
+                j = y / cellSize | 0,
+                i0 = Math.max(i - 2, 0),
+                j0 = Math.max(j - 2, 0),
+                i1 = Math.min(i + 3, gridWidth),
+                j1 = Math.min(j + 3, gridHeight);
+
+            for (j = j0; j < j1; ++j) {
+              var o = j * gridWidth;
+              for (i = i0; i < i1; ++i) {
+                if (s = grid[o + i]) {
+                  var s,
+                      dx = s[0] - x,
+                      dy = s[1] - y;
+                  if (dx * dx + dy * dy < radius2) return false;
+                }
+              }
+            }
+
+            return true;
+          }
+
+          function sample(s1, s0) {
+            if (s0) s1.depth = s0.depth + 1;
+            queue.push(s1);
+            grid[gridWidth * (s1[1] / cellSize | 0) + (s1[0] / cellSize | 0)] = s1;
+            ++sampleSize;
+            ++queueSize;
+            return [s1, s0];
+          }
+        }
+
+        </script>
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+            <header>
+              <h1><a href="/"><u>Brian Lutz</u></a></h1>
+                <!-- <nav>
+                    <ul>
+                        <li class="indexLink"><a href=""><span class="link">Home</span><span class="icon-link"><i class="fa fa-home"></i></span></a></li>
+                        <li class="aboutLink"><a href="#about"><span class="link">About</span><span class="icon-link"><i class="fa fa-info-circle"></i></span></a></li>
+                        <!--<li><a href="/work.html"><span class="link">Work</span><span class="icon-link"><i class="fa fa-briefcase"></i></span></a></li>-->
+                        <!-- <li class="contactLink"><a href="#contact"><span class="link">Contact</span><span class="icon-link"><i class="fa fa-phone"></i></span></a></li>
+                        <li class="blogLink"><a href="/blog/"><span class="link">Blog</span><span class="icon-link"><i class="fa fa-pencil"></i></span></a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <div id="home">
+            </div>
+            </div>
+            <div id="container">
+              <div id="about">
+                <header><h1><a><div style="padding-left:30px;">About</a></h1></header>
+                <div id="aboutContainer">
+                    <div id="mainpage" class="about-page">
+                      <p class="bit">Brian Lutz develops analytic software for a variety of applications. His interests include automotive racing, jazz music, and fashionably chilly weather.</p>
+                      <p class="bit">If you would like to contact Brian, please feel free to <a href="mailto:brian.lutz@hushmail.com">email</a> him, or tweet <a href="http://twitter.com/BtLutz">@BtLutz</a>
+                      <p class="bit">Site design & inspiration comes from <a href="http://www.twitter.com/mightyshakerjnr">@mightyshakerjnr</a> & <a href="http://www.twitter.com/hmason">@hmason</a>
+                    </div>
+                </div>
+              </div>
+              <div id="contact">
+                  <header><h1><a href="/">Contact</a></h1></header>
+                  <div id="mainpage" class="contact-page">
+                    <span class="bit con c-one"><i class="fa fa-twitter"></i>&nbsp;<a href="https://twitter.com/@BtLutz">@BtLutz</a></span>
+                    <div class="divisi" style="height:60px;">&nbsp;</div>
+                    <span class="bit c-four"><i class="fa fa-linkedin"></i>&nbsp;<a href="https://www.linkedin.com/pub/brian-lutz/81/912/9b">Brian Lutz</a></span>
+                    <div class="divisi" style="height:60px;">&nbsp;</div>
+                    <span class="bit con c-two"><i class="fa fa-inbox"></i>&nbsp;<a href="mailto:brian.lutz@hushmail.com">eMail</a></span>
+                    <div class="divisi" style="height:60px;">&nbsp;</div>
+                    <span class="bit con c-five"><i class="fa fa-github"></i>&nbsp;<a href="http://github.com/BtLutz">@BtLutz</a></span>
+                    </div>
+                  </div>
+              </div>
+            </div> -->
+
+    </body>
+</html>
